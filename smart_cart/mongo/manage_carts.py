@@ -49,13 +49,12 @@ class CartManager(object):
         self.close_connection(client)
         return this_cart
 
-    def get_cart_contents():
-        return cart_contents
-
-    def get_cart_collection_contents(self):
+    def get_cart_ids(self):
         client = self.open_connection()
-        db = client.smart_cart
-        carts = db.carts
+        carts = self.get_carts_collection(client)
         cursor = carts.find({})
+        cart_ids = []
         for item in cursor:
-            print(item)
+            cart_ids.append(ObjectId(item['_id']))
+
+        return cart_ids
