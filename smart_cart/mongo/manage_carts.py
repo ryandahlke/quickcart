@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 # this import is required if we want to handle the ObjectId as a string
 from bson.objectid import ObjectId
+from smart_cart.upc_api.semantics_puller import SemanticsPuller
 
 
 class CartManager(object):
@@ -59,3 +60,8 @@ class CartManager(object):
             cart_ids.append(ObjectId(item['_id']))
 
         return cart_ids
+
+    def get_upc_metadata(self, upc):
+        puller = SemanticsPuller()
+        metadata = puller.get_product(upc)
+        return metadata
