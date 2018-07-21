@@ -27,7 +27,7 @@ class CartManager(object):
         self.close_connection(client)
         return cart_object_id
 
-    def add_item_to_cart(sefl, cart_id):
+    def add_item_to_cart(self, cart_id):
         return cart_contents
 
     def remove_item_from_cart(self):
