@@ -7,6 +7,8 @@ import { WindowComponent } from './window/window.component';
 import { MenuComponent } from './menu/menu.component';
 import { CartComponent } from './cart/cart.component';
 import { SelectCartComponent } from './select-cart/select-cart.component';
+import { ViewCartComponent } from './view-cart/view-cart.component';
+import { CheckoutCartComponent } from './checkout-cart/checkout-cart.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { SelectCartComponent } from './select-cart/select-cart.component';
     MenuComponent,
     ScannerComponent,
     CartComponent,
-    SelectCartComponent
+    SelectCartComponent,
+    ViewCartComponent,
+    CheckoutCartComponent
   ],
   imports: [
     BrowserModule,
