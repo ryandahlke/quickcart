@@ -9,6 +9,7 @@ import { CartComponent } from './cart/cart.component';
 import { SelectCartComponent } from './select-cart/select-cart.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
 import { CheckoutCartComponent } from './checkout-cart/checkout-cart.component';
+import { AppRoutingModule } from './app-routing.module';
 import { Debouncer } from './debouncer'
 
 @NgModule({
@@ -24,6 +25,7 @@ import { Debouncer } from './debouncer'
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
   ],
   providers: [
     Debouncer
