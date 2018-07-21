@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('static/SmartCart/index.html')
+    return render_template('static/index.html')
 
 
 @app.route('/start-cart/', methods=['POST'])

@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng build && cp -rf ./dist/SmartCart ../static/"
+    "deploy": "npm run build && cp -rf ./dist/SmartCart ../static/"
   },
   "private": true,
   "dependencies": {
