@@ -47,6 +47,6 @@
     "quagga": "^0.12.1",
     "bootstrap": "~4.1.2",
     "jquery": "1.9.1",
-    "popper.js": "^1.14.3",
+    "popper.js": "^1.14.3"
   }
 }
