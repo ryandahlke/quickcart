@@ -8,7 +8,7 @@ class CartManager(object):
     def __init__(self, **kwargs):
         self.MONGO_HOST = 'smartcart.xyz'
         self.MONGO_PORT = 2017
-        self.cart_id = kwargs.get('cart_id', '')
+        self.cart_id = kwargs.get('cart_id', None)
         self.item = kwargs.get('item', {})
 
     def open_connection(self):
@@ -28,7 +28,11 @@ class CartManager(object):
         self.close_connection(client)
         return cart_object_id
 
-    def add_item_to_cart(self, cart_id):
+    def add_item_to_cart(self):
+        client = self.open_connection()
+        carts = client.smart_cart
+        this_cart = carts.find_one(self.cart_id)
+        this_cart['items'].append(self.item)
         return cart_contents
 
     def remove_item_from_cart(self):
@@ -40,7 +44,7 @@ class CartManager(object):
     def get_cart_contents():
         return cart_contents
 
-    def get_cart_collection_contents:
+    def get_cart_collection_contents(self):
         client = self.open_connection()
         db = client.smart_cart
         carts = db.carts
