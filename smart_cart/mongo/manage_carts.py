@@ -19,6 +19,7 @@ class CartManager(object):
     def close_connection(client):
         client.close()
 
+    @staticmethod
     def get_carts_collection(self, client):
         db = client.smart_cart
         return db.carts
@@ -54,11 +55,10 @@ class CartManager(object):
         carts.update_one({'_id': self.cart_id}, {'$set': {'items': this_cart['items']}})
         self.close_connection(client)
 
-    def get_cart(self, cart_id, client=None):
-        if not client:
-            client = self.open_connection()
+    def get_cart(self,):
+        client = self.open_connection()
         carts = self.get_carts_collection(client)
-        this_cart = carts.find_one({'_id': cart_id})
+        this_cart = carts.find_one({'_id': self.cart_id})
         self.close_connection(client)
         return this_cart
 
