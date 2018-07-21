@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && cp -rf ./src/assets ./dist/SmartCart",
     "test": "ng test",
     "lint": "ng lint",
     "deploy": "npm run build && cp -rf ./dist/SmartCart ../static/"
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
+    "quagga": "^0.12.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
@@ -44,7 +45,6 @@
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2",
-    "quagga": "^0.12.1",
     "bootstrap": "~4.1.2",
     "jquery": "1.9.1",
     "popper.js": "^1.14.3"
