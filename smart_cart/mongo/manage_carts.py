@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 class CartManager(object):
 
     def __init__(self, **kwargs):
-        self.MONGO_HOST = '54.208.118.169'
+        self.MONGO_HOST = 'smartcart.xyz'
         self.MONGO_PORT = 2017
         self.cart_id = kwargs.get('cart_id', '')
         self.item = kwargs.get('item', {})
@@ -20,7 +20,8 @@ class CartManager(object):
 
     def create_cart(self):
         client = self.open_connection()
-        carts = client.smart_cart
+        db = client.smart_cart
+        carts = db.carts
         empty_cart = {'items': []}
         new_cart = carts.insert_one(empty_cart)
         cart_object_id = new_cart.inserted_id
@@ -38,3 +39,11 @@ class CartManager(object):
 
     def get_cart_contents():
         return cart_contents
+
+    def get_cart_collection_contents:
+        client = self.open_connection()
+        db = client.smart_cart
+        carts = db.carts
+        cursor = carts.find({})
+        for item in cursor:
+            print(item)
