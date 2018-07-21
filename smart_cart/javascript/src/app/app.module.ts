@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ScannerComponent } from './scanner/scanner.component';
+import { Debouncer } from './debouncer'
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { ScannerComponent } from './scanner/scanner.component';
   imports: [
     BrowserModule,
   ],
-  providers: [],
+  providers: [
+    Debouncer
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
