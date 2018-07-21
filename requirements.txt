@@ -1,1 +1,2 @@
 semantics3==0.3.8
+flask=1.0.2
