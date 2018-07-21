@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, send_from_directory
+
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('static/index.html')
+    return send_from_directory('static/SmartCart/', 'index.html')
 
 
 @app.route('/start-cart/', methods=['POST'])
