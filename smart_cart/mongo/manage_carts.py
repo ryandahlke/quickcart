@@ -33,18 +33,26 @@ class CartManager(object):
         self.cart_id = cart_object_id
         return cart_object_id
 
-    def add_item_to_cart(self):
+    def add_item_to_cart(self, upc):
         client = self.open_connection()
         carts = self.get_carts_collection(client)
         this_cart = carts.find_one(self.cart_id)
-        this_cart['items'].append(self.item)
+        item = self.get_upc_metadata(upc)
+        this_cart['items'].append(item)
         carts.update_one({'_id': self.cart_id}, {'$set': {'items': this_cart['items']}})
-        this_cart_updated = carts.find_one(self.cart_id)
         self.close_connection(client)
-        return this_cart_updated
 
-    def remove_item_from_cart(self):
-        return cart_contents
+    def remove_item_from_cart(self, upc):
+        client = self.open_connection()
+        carts = self.get_carts_collection(client)
+        this_cart = carts.find_one(self.cart_id)
+        counter = 0
+        for item in this_cart['items']:
+            if item['upc'] == upc:
+                this_cart['items'].pop(counter)
+            counter += 1
+        carts.update_one({'_id': self.cart_id}, {'$set': {'items': this_cart['items']}})
+        self.close_connection(client)
 
     def get_cart(self, cart_id, client=None):
         if not client:
