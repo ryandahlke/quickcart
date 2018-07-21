@@ -44,6 +44,10 @@
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "quagga": "^0.12.1",
+    "bootstrap": "~4.1.2",
+    "jquery": "1.9.1",
+    "popper.js": "^1.14.3"
   }
 }
