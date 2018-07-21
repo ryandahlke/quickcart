@@ -36,7 +36,8 @@ class CartManager(object):
         carts = self.get_carts_collection(client)
         this_cart = carts.find_one(self.cart_id)
         this_cart['items'].append(self.item)
-        return cart_contents
+        carts.update_one({'_id': self.cart_id}, {'$set': {'items': this_cart['items']}})
+        return this_cart
 
     def remove_item_from_cart(self):
         return cart_contents
