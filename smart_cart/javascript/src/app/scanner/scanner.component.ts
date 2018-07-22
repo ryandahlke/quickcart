@@ -11,7 +11,7 @@ import { debounceTime } from 'rxjs/operators';
 export class ScannerComponent implements AfterViewInit, OnDestroy {
   private configObject;
   readonly audio: HTMLAudioElement;
-  readonly failureThreshhold = .1;
+  readonly failureThreshhold = .105;
 
   private lastResult;
 
