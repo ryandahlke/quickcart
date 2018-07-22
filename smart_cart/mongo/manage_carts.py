@@ -42,6 +42,7 @@ class CartManager(object):
         this_cart['items'].append(item)
         carts.update_one({'_id': self.cart_id}, {'$set': {'items': this_cart['items']}})
         self.close_connection(client)
+        return item
 
     def remove_item_from_cart(self, upc):
         client = self.open_connection()
@@ -55,7 +56,7 @@ class CartManager(object):
         carts.update_one({'_id': self.cart_id}, {'$set': {'items': this_cart['items']}})
         self.close_connection(client)
 
-    def get_cart(self,):
+    def get_cart(self):
         client = self.open_connection()
         carts = self.get_carts_collection(client)
         this_cart = carts.find_one({'_id': self.cart_id})
