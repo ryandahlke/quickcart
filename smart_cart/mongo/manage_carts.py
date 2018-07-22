@@ -20,7 +20,7 @@ class CartManager(object):
         client.close()
 
     @staticmethod
-    def get_carts_collection(self, client):
+    def get_carts_collection(client):
         db = client.smart_cart
         return db.carts
 
