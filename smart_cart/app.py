@@ -88,3 +88,7 @@ def styles_js():
 @app.route('/vendor.js', methods=['GET'])
 def vendor_js():
     return send_from_directory('static/SmartCart/', 'vendor.js')
+
+@app.route('/assets/beep.mp3')
+def beep_file():
+    return send_from_directory('static/SmartCart/assets/', 'beep.mp3')

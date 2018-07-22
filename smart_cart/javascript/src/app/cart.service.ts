@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs/index";
 import {CartItem} from "./cart-item";
 import {Cart} from "./cart";
+import {HttpClient} from "@angular/common/http";
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor() { }
+  constructor(readonly http: HttpClient) { }
 
   getCurrentCartId(){
     return window.localStorage.getItem('cart') || 'abcd1234';
@@ -25,23 +28,8 @@ export class CartService {
   }
 
   getCart(cartId: string): Observable<Cart>{
-    return of(
-      new Cart({
-        _id: 'abcd1234',
-        items: [
-          {
-            'upc': '987654321',
-            'imageUrl': 'https://loremflickr.com/320/240',
-            'description': `Fancy product 987654321`
-          },
-          {
-            'upc': '123456789',
-            'imageUrl': 'https://loremflickr.com/320/240',
-            'description': `Fancy product 123456789`
-          },
-        ]
-      })
-    )
+    let endpoint = `/cart/${cartId}`;
+    return this.http.get(endpoint).pipe(map((result) => new Cart(result)));
   }
 
 }
