@@ -19,4 +19,4 @@ class SemanticsPuller(object):
             return filtered_results
         else:
             # raise Exception('Could not find the product')
-            return {'upc': upc, 'images': None, 'name': None}
+            return {'upc': upc, 'images': None, 'name': None, 'quantity': 0}
