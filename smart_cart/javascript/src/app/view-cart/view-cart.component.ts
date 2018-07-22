@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {CartItem} from "../cart-item";
 
 @Component({
   selector: 'app-view-cart',
@@ -7,13 +8,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ViewCartComponent implements OnInit {
 
+  items: CartItem[] = [];
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
-  registerBarcodeScan($event){
-    console.log($event);
+  registerBarcodeScan(upc:string){
+    let cartItem = new CartItem(upc);
+    this.items.push(cartItem)
   }
 
 }
