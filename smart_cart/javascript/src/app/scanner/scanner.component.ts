@@ -1,4 +1,4 @@
-import {Component, AfterViewInit} from '@angular/core';
+import {Component, AfterViewInit, Output, EventEmitter} from '@angular/core';
 import * as Quagga from 'quagga';
 import {Debouncer} from '../debouncer'
 
@@ -9,8 +9,9 @@ import {Debouncer} from '../debouncer'
 })
 export class ScannerComponent implements AfterViewInit {
   readonly configObject;
-  private onDetected;
-  private audio;
+  readonly debouncer;
+
+  @Output() scan: EventEmitter<any> = new EventEmitter();
 
   constructor(debouncer: Debouncer) {
     this.configObject = {
@@ -40,8 +41,7 @@ export class ScannerComponent implements AfterViewInit {
       },
       locate: true
     };
-
-    this.onDetected = debouncer.debounce(this.processResult, 1000);
+    this.debouncer = debouncer;
   }
 
   ngAfterViewInit() {
@@ -59,19 +59,20 @@ export class ScannerComponent implements AfterViewInit {
           return
         }
 
-        Quagga.onDetected(self.onDetected);
+      Quagga.onDetected(
+        self.debouncer.debounce((result)=>{
+          if (result && result.codeResult) {
+            let audio = new Audio();
+            audio.src = "./assets/beep.mp3";
+            audio.load();
+            audio.play();
+            self.scan.emit(result);
+          }
+        })
+      );
 
         Quagga.start();
       }
     );
-  }
-
-  processResult(result){
-    if (result && result.codeResult) {
-      this.audio = new Audio();
-      this.audio.src = "./assets/beep.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
   }
 }
