@@ -11,6 +11,7 @@ import { ViewCartComponent } from './view-cart/view-cart.component';
 import { CheckoutCartComponent } from './checkout-cart/checkout-cart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import {CartService} from "./cart.service";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CartItemComponent } from './cart-item/cart-item.component';
     AppRoutingModule,
   ],
   providers: [
+    CartService
   ],
   bootstrap: [AppComponent]
 })

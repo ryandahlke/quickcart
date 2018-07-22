@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CartItem} from "../cart-item";
+import {CartService} from "../cart.service";
 
 @Component({
   selector: 'app-view-cart',
@@ -8,17 +9,19 @@ import {CartItem} from "../cart-item";
 })
 export class ViewCartComponent implements OnInit {
 
+  cartId: string;
+  // @Input() cartId: string;
   items: CartItem[] = [];
 
-  constructor() { }
+  constructor(readonly cartService: CartService) { }
 
   ngOnInit() {
-
+    this.cartId = this.cartService.getCurrentCartId();
+    this.cartService.getCart(this.cartId).subscribe((cart)=> this.items.push(...cart.cartItems));
   }
 
   registerBarcodeScan(upc:string){
-    let cartItem = new CartItem(upc);
-    this.items.push(cartItem)
+    this.cartService.addItem(this.cartId, upc).subscribe((item) => this.items.push(item));
   }
 
 }

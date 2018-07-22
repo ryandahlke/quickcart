@@ -1,46 +1,61 @@
-from flask import Flask, send_from_directory
+import json
+
+from flask import Flask, send_from_directory, Response, request
 from smart_cart.mongo.manage_carts import CartManager
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-cm = CartManager()
-upc='078742040370'
-cart_id='5b53df321266c54abb3508fa'
-object_cart_id = ObjectId(cart_id)
-
 
 @app.route('/', methods=['GET'])
+@app.route('/view-cart', methods=['GET'])
+@app.route('/select-cart', methods=['GET'])
 def index():
     return send_from_directory('static/SmartCart/', 'index.html')
 
 
-@app.route('/start-cart/', methods=['POST'])
+@app.route('/create-cart/', methods=['POST'])
 def start_cart():
-    cm.create_cart()
+    cm = CartManager()
+    cart_id = cm.create_cart()
+    response = {'cart_id': cart_id}
+    response_json = json.dumps(response)
+    return Response(response_json, status=201)
 
 
-@app.route('/add-item/', methods=['POST'])
+@app.route('/item/', methods=['POST'])
 def add_item():
-    cm.cart_id = object_cart_id
-    return cm.add_item_to_cart(upc)
+    upc = request.json['upc']
+    cart_id = request.json['cart_id']
+    cm = CartManager(cart_id)
+    response = cm.add_item_to_cart(upc)
+    response_json = json.dumps(response)
+    return Response(response_json, status=201)
 
 
-@app.route('/delete-item/', methods=['DELETE'])
+@app.route('/item/', methods=['DELETE'])
 def delete_item():
-    cm.cart_id = object_cart_id
+    upc = request.json['upc']
+    cart_id = request.json['cart_id']
+    cm = CartManager(cart_id)
     cm.remove_item_from_cart(upc)
+    return Response(status=204)
 
 
-@app.route('/view-cart/', methods=['GET'])
-def view_cart():
-    cm.cart_id = object_cart_id
-    return cm.get_cart()
+@app.route('/cart/<string:cart_id>')
+def view_cart(cart_id):
+    cm = CartManager(cart_id)
+    response = cm.get_cart()
+    response_json = json.dumps(response)
+    return Response(response_json, status=200)
 
 
-@app.route('/get-cart/', methods=['GET'])
-def get_cart():
-    return 'The Get Cart Barcode Page'
+@app.route('/upcs-cart/<string:cart_id>')
+def get_cart(cart_id):
+    cm = CartManager(cart_id)
+    response = cm.get_cart_upcs()
+    response_json = json.dumps(response)
+    return Response(response_json, status=200)
 
 
 @app.route('/main.js', methods=['GET'])
@@ -71,3 +86,7 @@ def styles_js():
 @app.route('/vendor.js', methods=['GET'])
 def vendor_js():
     return send_from_directory('static/SmartCart/', 'vendor.js')
+
+@app.route('/assets/beep.mp3')
+def beep_file():
+    return send_from_directory('static/SmartCart/assets/', 'beep.mp3')

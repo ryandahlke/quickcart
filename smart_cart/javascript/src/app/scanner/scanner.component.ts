@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, OnDestroy, Output, EventEmitter} from '@angular/core';
+import {Component, AfterViewInit, OnDestroy, Output, EventEmitter, ViewChild} from '@angular/core';
 import * as Quagga from 'quagga';
 import {Subject} from "rxjs/index";
 import { debounceTime } from 'rxjs/operators';
@@ -9,9 +9,9 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./scanner.component.css']
 })
 export class ScannerComponent implements AfterViewInit, OnDestroy {
-  readonly configObject;
+  private configObject;
   readonly audio: HTMLAudioElement;
-  readonly failureThreshhold = .1;
+  readonly failureThreshhold = .105;
 
   private lastResult;
 
@@ -21,13 +21,27 @@ export class ScannerComponent implements AfterViewInit, OnDestroy {
   constructor() {
     this.audio = new Audio();
 
+    this.debouncer.pipe(
+      debounceTime(1000)
+    ).subscribe(
+      (value: string) => { this.scan.emit(value)}
+    );
+
+
+  }
+
+  ngAfterViewInit() {
+    let scanner = document.querySelector('#scanner');
+    let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * .4;
     this.configObject = {
       inputStream: {
         type: "LiveStream",
         constraints: {
           facingMode: "environment", // or user,
+          width: scanner.clientWidth,
+          height: height
         },
-        target: '#scanner'
+        target: scanner
       },
       locator: {
         patchSize: "large",
@@ -48,17 +62,6 @@ export class ScannerComponent implements AfterViewInit, OnDestroy {
       },
       locate: true
     };
-
-    this.debouncer.pipe(
-      debounceTime(1000)
-    ).subscribe(
-      (value: string) => { this.scan.emit(value)}
-    );
-
-
-  }
-
-  ngAfterViewInit() {
     this.initializeQuagga();
     this.audio.src = "./assets/beep.mp3";
     this.audio.load();
@@ -94,9 +97,10 @@ export class ScannerComponent implements AfterViewInit, OnDestroy {
             });
 
             if (err / countDecodedCodes < self.failureThreshhold) {
+              console.log("success!");
+              console.log(err / countDecodedCodes);
               self.beep();
-                  self.debouncer.next(result.codeResult.code);
-
+              self.debouncer.next(result.codeResult.code);
             } else {
               console.log(err / countDecodedCodes);
               console.log("Code: " + code.toString());
@@ -106,6 +110,7 @@ export class ScannerComponent implements AfterViewInit, OnDestroy {
         });
 
         Quagga.start();
+        document.querySelector('#scanner canvas').outerHTML = '';
       }
     );
 
