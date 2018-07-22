@@ -36,7 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _select_cart_select_cart_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./select-cart/select-cart.component */ "./src/app/select-cart/select-cart.component.ts");
-/* harmony import */ var _scanner_scanner_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scanner/scanner.component */ "./src/app/scanner/scanner.component.ts");
+/* harmony import */ var _view_cart_view_cart_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./view-cart/view-cart.component */ "./src/app/view-cart/view-cart.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -52,13 +52,13 @@ var routes = [
         path: 'select-cart',
         component: _select_cart_select_cart_component__WEBPACK_IMPORTED_MODULE_2__["SelectCartComponent"]
     },
+    {
+        path: 'view-cart',
+        component: _view_cart_view_cart_component__WEBPACK_IMPORTED_MODULE_3__["ViewCartComponent"]
+    },
     { path: '',
         redirectTo: 'select-cart',
         pathMatch: 'full'
-    },
-    {
-        path: 'scanner',
-        component: _scanner_scanner_component__WEBPACK_IMPORTED_MODULE_3__["ScannerComponent"]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -85,7 +85,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n:host(app-root) {\n  order: 0;\n  flex: 1 1 auto;\n  -ms-grid-row-align: auto;\n      align-self: auto;\n  height: 100vh;\n  display: block;\n}\n\n.window-container {\n  height: 100vh;\n  background: #28917A;\n  display: block;\n}\n"
+module.exports = "\n:host(app-root) {\n  order: 0;\n  padding: 0;\n  flex: 1 1 auto;\n  -ms-grid-row-align: auto;\n      align-self: auto;\n  height: 100vh;\n  display: block;\n  background: #28917A;\n}\n\n.main-container {\n  height: 100vh;\n  width: 100vw;\n}\n\n.menu-container {\n  height: 100vh;\n}\n\n.routes-container {\n\n}\n"
 
 /***/ }),
 
@@ -96,7 +96,7 @@ module.exports = "\n:host(app-root) {\n  order: 0;\n  flex: 1 1 auto;\n  -ms-gri
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"window-container container-fluid\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"main-container row\">\n  <div class=\"menu-container col-3\">\n    <app-menu></app-menu>\n  </div>\n  <div class=\"routes-container col-9\">\n    <router-outlet></router-outlet>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -324,8 +324,7 @@ var CheckoutCartComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-checkout-cart',
             template: __webpack_require__(/*! ./checkout-cart.component.html */ "./src/app/checkout-cart/checkout-cart.component.html"),
-            styles: [__webpack_require__(/*! ./checkout-cart.component.css */ "./src/app/checkout-cart/checkout-cart.component.css")],
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].Native
+            styles: [__webpack_require__(/*! ./checkout-cart.component.css */ "./src/app/checkout-cart/checkout-cart.component.css")]
         }),
         __metadata("design:paramtypes", [])
     ], CheckoutCartComponent);
@@ -404,7 +403,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  menu works!\n</p>\n"
+module.exports = "<div></div><nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Link</a>\n      </li>\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Dropdown\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"#\">Action</a>\n          <a class=\"dropdown-item\" href=\"#\">Another action</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Something else here</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link disabled\" href=\"#\">Disabled</a>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -438,8 +437,7 @@ var MenuComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-menu',
             template: __webpack_require__(/*! ./menu.component.html */ "./src/app/menu/menu.component.html"),
-            styles: [__webpack_require__(/*! ./menu.component.css */ "./src/app/menu/menu.component.css")],
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].Native
+            styles: [__webpack_require__(/*! ./menu.component.css */ "./src/app/menu/menu.component.css")]
         }),
         __metadata("design:paramtypes", [])
     ], MenuComponent);
@@ -500,6 +498,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var ScannerComponent = /** @class */ (function () {
     function ScannerComponent(debouncer) {
+        this.scan = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.configObject = {
             inputStream: {
                 type: "LiveStream",
@@ -527,10 +526,13 @@ var ScannerComponent = /** @class */ (function () {
             },
             locate: true
         };
-        this.onDetected = debouncer.debounce(this.processResult, 1000);
+        this.debouncer = debouncer;
+        this.audio = new Audio();
     }
-    ScannerComponent.prototype.ngOnInit = function () {
+    ScannerComponent.prototype.ngAfterViewInit = function () {
         this.initializeQuagga();
+        this.audio.src = "./assets/beep.mp3";
+        this.audio.load();
     };
     ScannerComponent.prototype.initializeQuagga = function () {
         var self = this;
@@ -539,18 +541,22 @@ var ScannerComponent = /** @class */ (function () {
                 console.log(err);
                 return;
             }
-            quagga__WEBPACK_IMPORTED_MODULE_1__["onDetected"](self.onDetected);
+            quagga__WEBPACK_IMPORTED_MODULE_1__["onDetected"](self.debouncer.debounce(function (result) {
+                if (result && result.codeResult) {
+                    self.beep();
+                    self.scan.emit(result);
+                }
+            }));
             quagga__WEBPACK_IMPORTED_MODULE_1__["start"]();
         });
     };
-    ScannerComponent.prototype.processResult = function (result) {
-        if (result && result.codeResult) {
-            this.audio = new Audio();
-            this.audio.src = "./assets/beep.mp3";
-            this.audio.load();
-            this.audio.play();
-        }
+    ScannerComponent.prototype.beep = function () {
+        this.audio.play();
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], ScannerComponent.prototype, "scan", void 0);
     ScannerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-scanner',
@@ -573,7 +579,7 @@ var ScannerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".select-cart-box {\n  display: block;\n  height: 10vh;\n  width: 10vw;\n  background: black;\n}\n"
+module.exports = ".banner {\n  height: 10%;\n\n}\n\n.banner-text {\n  font-family: 'Roboto Slab', serif;\n  font-size: 3.5em;\n}\n\n.new-cart-action-box {\n  height: 90%;\n}\n\n.new-cart-btn {\n  height: 10%;\n  width: 50%;\n}\n\n.new-cart-btn-text {\n  font-size: 2em;\n  font-family: sans-serif;\n}\n"
 
 /***/ }),
 
@@ -584,7 +590,7 @@ module.exports = ".select-cart-box {\n  display: block;\n  height: 10vh;\n  widt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"select-cart-box\"></div>\n"
+module.exports = "<div class=\"banner row p-5 justify-content-center align-items-center\">\n  <div class=\" col-md-6 col-sm-10 text-center\">\n    <p class=\"banner-text\">Registore</p>\n  </div>\n</div>\n<div class=\"new-cart-action-box row justify-content-center align-items-center\">\n  <div class=\"col-md-4 col-sm-10 text-center\">\n    <a href=\"/view-cart\">\n      <button class=\"new-cart-btn btn text-center\" >\n        <span class=\"new-cart-btn-text\">New Cart</span>\n      </button>\n    </a>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -618,8 +624,7 @@ var SelectCartComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-select-cart',
             template: __webpack_require__(/*! ./select-cart.component.html */ "./src/app/select-cart/select-cart.component.html"),
-            styles: [__webpack_require__(/*! ./select-cart.component.css */ "./src/app/select-cart/select-cart.component.css")],
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].Native
+            styles: [__webpack_require__(/*! ./select-cart.component.css */ "./src/app/select-cart/select-cart.component.css")]
         }),
         __metadata("design:paramtypes", [])
     ], SelectCartComponent);
@@ -648,7 +653,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  view-cart works!\n</p>\n"
+module.exports = "<app-scanner (scan)=\"registerBarcodeScan($event)\"></app-scanner>\n"
 
 /***/ }),
 
@@ -678,12 +683,14 @@ var ViewCartComponent = /** @class */ (function () {
     }
     ViewCartComponent.prototype.ngOnInit = function () {
     };
+    ViewCartComponent.prototype.registerBarcodeScan = function ($event) {
+        console.log($event);
+    };
     ViewCartComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-view-cart',
             template: __webpack_require__(/*! ./view-cart.component.html */ "./src/app/view-cart/view-cart.component.html"),
-            styles: [__webpack_require__(/*! ./view-cart.component.css */ "./src/app/view-cart/view-cart.component.css")],
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].Native
+            styles: [__webpack_require__(/*! ./view-cart.component.css */ "./src/app/view-cart/view-cart.component.css")]
         }),
         __metadata("design:paramtypes", [])
     ], ViewCartComponent);

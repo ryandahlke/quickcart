@@ -1,5 +1,5 @@
 .banner {
-  height: 10vh;
+  height: 10%;
 
 }
 
@@ -9,12 +9,12 @@
 }
 
 .new-cart-action-box {
-  height: 90vh;
+  height: 90%;
 }
 
 .new-cart-btn {
-  height: 10vh;
-  width: 50vw;
+  height: 10%;
+  width: 50%;
 }
 
 .new-cart-btn-text {
