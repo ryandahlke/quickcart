@@ -1,0 +1,10 @@
+.cart-item{
+  display: table;
+}
+.cart-item img{
+  display:table-cell;
+  height: 2rem;
+}
+.cart-item span{
+  display: table-cell;
+}
