@@ -9,7 +9,8 @@ class CartManager(object):
     def __init__(self, **kwargs):
         self.MONGO_HOST = 'smartcart.xyz'
         self.MONGO_PORT = 2017
-        self.cart_id = kwargs.get('cart_id', None)
+        self.cart_id_str = kwargs.get('cart_id', None)
+        self.cart_id = ObjectId(self.cart_id_str)
         self.upc = kwargs.get('upc', {})
 
     def open_connection(self):
@@ -31,8 +32,8 @@ class CartManager(object):
         new_cart = carts.insert_one(empty_cart)
         cart_object_id = new_cart.inserted_id
         self.close_connection(client)
-        self.cart_id = cart_object_id
-        return cart_object_id
+        self.cart_id_str = str(cart_object_id)
+        return self.cart_id_str
 
     def add_item_to_cart(self, upc, quantity=1):
         client = self.open_connection()
