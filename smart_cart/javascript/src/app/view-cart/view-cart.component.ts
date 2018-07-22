@@ -12,4 +12,8 @@ export class ViewCartComponent implements OnInit {
   ngOnInit() {
   }
 
+  registerBarcodeScan($event){
+    console.log($event);
+  }
+
 }

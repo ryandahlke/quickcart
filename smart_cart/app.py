@@ -1,7 +1,13 @@
 from flask import Flask, send_from_directory
 from smart_cart.mongo.manage_carts import CartManager
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
+
+cm = CartManager()
+upc='078742040370'
+cart_id='5b53df321266c54abb3508fa'
+object_cart_id = ObjectId(cart_id)
 
 
 @app.route('/', methods=['GET'])
@@ -11,22 +17,25 @@ def index():
 
 @app.route('/start-cart/', methods=['POST'])
 def start_cart():
-    return 'The Start Cart Page'
+    cm.create_cart()
 
 
 @app.route('/add-item/', methods=['POST'])
 def add_item():
-    return 'The Add Item Page'
+    cm.cart_id = object_cart_id
+    return cm.add_item_to_cart(upc)
 
 
 @app.route('/delete-item/', methods=['DELETE'])
 def delete_item():
-    return 'The Delete Item Page'
+    cm.cart_id = object_cart_id
+    cm.remove_item_from_cart(upc)
 
 
 @app.route('/view-cart/', methods=['GET'])
 def view_cart():
-    return 'The View Cart Page'
+    cm.cart_id = object_cart_id
+    return cm.get_cart()
 
 
 @app.route('/get-cart/', methods=['GET'])

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, AfterViewInit, Output, EventEmitter} from '@angular/core';
 import * as Quagga from 'quagga';
 import {Debouncer} from '../debouncer'
 
@@ -7,10 +7,12 @@ import {Debouncer} from '../debouncer'
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.css']
 })
-export class ScannerComponent implements OnInit {
+export class ScannerComponent implements AfterViewInit {
   readonly configObject;
-  private onDetected;
-  private audio;
+  readonly debouncer;
+  readonly audio: HTMLAudioElement;
+
+  @Output() scan: EventEmitter<any> = new EventEmitter();
 
   constructor(debouncer: Debouncer) {
     this.configObject = {
@@ -40,12 +42,16 @@ export class ScannerComponent implements OnInit {
       },
       locate: true
     };
+    this.debouncer = debouncer;
 
-    this.onDetected = debouncer.debounce(this.processResult, 1000);
+    this.audio = new Audio()
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.initializeQuagga();
+
+    this.audio.src = "./assets/beep.mp3";
+    this.audio.load();
   }
 
   initializeQuagga() {
@@ -59,19 +65,21 @@ export class ScannerComponent implements OnInit {
           return
         }
 
-        Quagga.onDetected(self.onDetected);
+      Quagga.onDetected(
+        self.debouncer.debounce((result)=>{
+          if (result && result.codeResult) {
+            self.beep();
+            self.scan.emit(result);
+          }
+        })
+      );
 
         Quagga.start();
       }
     );
   }
-
-  processResult(result){
-    if (result && result.codeResult) {
-      this.audio = new Audio();
-      this.audio.src = "./assets/beep.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
+  beep(){
+    this.audio.play();
   }
+
 }
