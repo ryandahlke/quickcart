@@ -1,4 +1,5 @@
 from flask import Flask, send_from_directory
+from smart_cart.mongo.manage_carts import CartManager
 
 app = Flask(__name__)
 
