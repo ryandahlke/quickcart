@@ -1,1 +1,2 @@
 <app-scanner (scan)="registerBarcodeScan($event)"></app-scanner>
+<app-cart-item *ngFor="let item of items" [cartItem]="item"></app-cart-item>
