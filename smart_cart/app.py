@@ -14,7 +14,7 @@ def index():
     return send_from_directory('static/SmartCart/', 'index.html')
 
 
-@app.route('/create-cart-flask/', methods=['POST'])
+@app.route('/create-cart/', methods=['POST'])
 def start_cart():
     cm = CartManager()
     cart_id = cm.create_cart()
@@ -23,7 +23,7 @@ def start_cart():
     return Response(response_json, status=201)
 
 
-@app.route('/add-item-flask/', methods=['POST'])
+@app.route('/item/', methods=['POST'])
 def add_item():
     upc = request.json['upc']
     cart_id = request.json['cart_id']
@@ -33,7 +33,7 @@ def add_item():
     return Response(response_json, status=201)
 
 
-@app.route('/delete-item-flask/', methods=['DELETE'])
+@app.route('/del-item/', methods=['DELETE'])
 def delete_item():
     upc = request.json['upc']
     cart_id = request.json['cart_id']
@@ -42,7 +42,7 @@ def delete_item():
     return Response(status=204)
 
 
-@app.route('/view-cart-flask/<string:cart_id>')
+@app.route('/cart/<string:cart_id>')
 def view_cart(cart_id):
     object_cart_id = ObjectId(cart_id)
     cm = CartManager(object_cart_id)
@@ -51,7 +51,7 @@ def view_cart(cart_id):
     return Response(response_json, status=200)
 
 
-@app.route('/get-cart-flask/<string:cart_id>')
+@app.route('/upcs-cart/<string:cart_id>')
 def get_cart(cart_id):
     object_cart_id = ObjectId(cart_id)
     cm = CartManager(object_cart_id)
