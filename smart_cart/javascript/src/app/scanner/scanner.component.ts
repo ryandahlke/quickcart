@@ -10,6 +10,7 @@ import {Debouncer} from '../debouncer'
 export class ScannerComponent implements AfterViewInit {
   readonly configObject;
   readonly debouncer;
+  readonly audio: HTMLAudioElement;
 
   @Output() scan: EventEmitter<any> = new EventEmitter();
 
@@ -42,10 +43,15 @@ export class ScannerComponent implements AfterViewInit {
       locate: true
     };
     this.debouncer = debouncer;
+
+    this.audio = new Audio()
   }
 
   ngAfterViewInit() {
     this.initializeQuagga();
+
+    this.audio.src = "./assets/beep.mp3";
+    this.audio.load();
   }
 
   initializeQuagga() {
@@ -62,10 +68,7 @@ export class ScannerComponent implements AfterViewInit {
       Quagga.onDetected(
         self.debouncer.debounce((result)=>{
           if (result && result.codeResult) {
-            let audio = new Audio();
-            audio.src = "./assets/beep.mp3";
-            audio.load();
-            audio.play();
+            self.beep();
             self.scan.emit(result);
           }
         })
@@ -75,4 +78,8 @@ export class ScannerComponent implements AfterViewInit {
       }
     );
   }
+  beep(){
+    this.audio.play();
+  }
+
 }
