@@ -85,7 +85,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n:host(app-root) {\n  order: 0;\n  padding: 0;\n  flex: 1 1 auto;\n  -ms-grid-row-align: auto;\n      align-self: auto;\n  height: 100vh;\n  display: block;\n  background: #28917A;\n}\n\n.main-container {\n  height: 100vh;\n  width: 100vw;\n  z-index: 1;\n}\n\n.menu-container {\n  height: 100vh;\n  z-index: 2000;\n}\n\n.routes-container {\n  z-index: 1000;\n}\n\n.glass {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  overflow: hidden;\n  z-index: 1000;\n}\n\n.glass:before {\n  content: '';\n  width: 100%;\n  height: 30%;\n  background: inherit;\n  box-shadow: 0 0 0 200px;\n  -webkit-filter: blur(10px);\n          filter: blur(10px);\n}\n"
+module.exports = "\n:host(app-root) {\n  order: 0;\n  padding: 0;\n  flex: 1 1 auto;\n  -ms-grid-row-align: auto;\n      align-self: auto;\n  height: 100vh;\n  display: block;\n  background: rgba(40,145,122, 0.4);\n}\n\n.main-container {\n  height: 100vh;\n  width: 100vw;\n  z-index: 1;\n}\n\n.menu-container {\n  height: 100vh;\n  z-index: 2000;\n}\n\n.routes-container {\n  z-index: 1000;\n}\n"
 
 /***/ }),
 
@@ -442,7 +442,7 @@ module.exports = ".menu-bar-icon, .menu a:link, .menu a {\n  color: #484538;\n}\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-center\">\n<nav class=\"menu navbar navbar-expand-lg\">\n  <button class=\"col-sm-12 navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span  class=\"navbar-toggler-icon\">\n      <i class=\"menu-bar-icon fa fa-bars fa-2x\" aria-hidden=\"true\"></i>\n    </span>\n  </button>\n\n  <div class=\"col-sm-12 collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto text-center\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" routerLink=\"/\">\n          <span class=\"sr-only\">(current)</span>\n          <span>\n            <i class=\"fa fa-home fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/view-cart\">\n          <span>\n            <i class=\"fa fa-shopping-cart fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/history\">\n          <span>\n            <i class=\"fa fa-history fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n    </ul>\n  </div>\n</nav>\n</div>\n"
+module.exports = "<div class=\"row justify-content-center\">\n<nav class=\"menu navbar navbar-expand-lg\">\n  <button class=\"col-sm-12 navbar-toggler\" id=\"menuDropDown\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span  class=\"navbar-toggler-icon\">\n      <i class=\"menu-bar-icon fa fa-bars fa-2x\" aria-hidden=\"true\"></i>\n    </span>\n  </button>\n\n  <div class=\"col-sm-12 collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto text-center\">\n      <li class=\"nav-item active\">\n        <a (click)=\"closeNav()\" class=\"nav-link\" routerLink=\"/\">\n          <span class=\"sr-only\">(current)</span>\n          <span>\n            <i class=\"fa fa-home fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a (click)=\"closeNav()\" class=\"nav-link\" routerLink=\"/view-cart\">\n          <span>\n            <i class=\"fa fa-shopping-cart fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a (click)=\"closeNav()\" class=\"nav-link\" routerLink=\"/history\">\n          <span>\n            <i class=\"fa fa-history fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n    </ul>\n  </div>\n</nav>\n</div>\n"
 
 /***/ }),
 
@@ -471,6 +471,10 @@ var MenuComponent = /** @class */ (function () {
     function MenuComponent() {
     }
     MenuComponent.prototype.ngOnInit = function () {
+    };
+    MenuComponent.prototype.closeNav = function () {
+        document.getElementById("menuDropDown").classList.add("collapsed");
+        document.getElementById("navbarSupportedContent").classList.remove("show");
     };
     MenuComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -645,7 +649,7 @@ var ScannerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".banner {\n  height: 10%;\n\n}\n\n.banner-text {\n  font-family: 'Roboto Slab', serif;\n  font-size: 8vw;\n}\n\n.new-cart-action-box {\n  height: 90%;\n}\n\n.new-cart-btn {\n    height: 15vw;\n    width: 50vw;\n}\n\n.new-cart-btn-text {\n  font-size: 5vw;\n  font-family: sans-serif;\n}\n"
+module.exports = ".banner {\n  height: 10%;\n\n}\n\n.banner-text {\n  font-family: 'Roboto Slab', serif;\n  font-size: 8vw;\n}\n\n.new-cart-action-box {\n  height: 90%;\n}\n\n.new-cart-btn {\n    height: 15vw;\n    width: 50vw;\n}\n\n.new-cart-btn-text {\n  font-size: 5vw;\n  font-family: sans-serif;\n  color: #484538;\n}\n"
 
 /***/ }),
 
@@ -656,7 +660,7 @@ module.exports = ".banner {\n  height: 10%;\n\n}\n\n.banner-text {\n  font-famil
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"banner row p-5 justify-content-center align-items-center\">\n  <div class=\" col-md-6 col-sm-10 text-center\">\n    <p class=\"banner-text\">Registore</p>\n  </div>\n</div>\n<div class=\"new-cart-action-box row justify-content-center align-items-center\">\n  <div class=\"col-md-4 col-sm-10 text-center\">\n    <a href=\"/view-cart\">\n      <button class=\"new-cart-btn btn text-center\" >\n        <span class=\"new-cart-btn-text\">New Cart</span>\n      </button>\n    </a>\n  </div>\n</div>\n"
+module.exports = "<div class=\"banner row p-5 justify-content-center align-items-center\">\n  <div class=\" col-md-6 col-sm-10 text-center\">\n    <p class=\"banner-text\">Registore</p>\n  </div>\n</div>\n<div class=\"new-cart-action-box row justify-content-center align-items-center\">\n  <div class=\"col-md-4 col-sm-10 text-center\">\n    <a routerLink=\"/view-cart\">\n      <button class=\"new-cart-btn btn text-center\" >\n        <div class=\"glass\"></div>\n        <div class=\"new-cart-btn-text\">New Cart</div>\n      </button>\n    </a>\n  </div>\n</div>\n"
 
 /***/ }),
 
