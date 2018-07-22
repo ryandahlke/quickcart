@@ -33,7 +33,7 @@ def add_item():
     return Response(response_json, status=201)
 
 
-@app.route('/del-item/', methods=['DELETE'])
+@app.route('/item/', methods=['DELETE'])
 def delete_item():
     upc = request.json['upc']
     cart_id = request.json['cart_id']
