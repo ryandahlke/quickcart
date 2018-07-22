@@ -2,7 +2,6 @@ import json
 
 from flask import Flask, send_from_directory, Response, request
 from smart_cart.mongo.manage_carts import CartManager
-from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
