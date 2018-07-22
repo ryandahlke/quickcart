@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SelectCartComponent} from './select-cart/select-cart.component'
+import {ScannerComponent} from "./scanner/scanner.component";
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   { path: '',
     redirectTo: 'select-cart',
     pathMatch: 'full'
+  },
+  {
+    path: 'scanner',
+    component: ScannerComponent
   }
 ];
 

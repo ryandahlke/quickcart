@@ -3,8 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-checkout-cart',
   templateUrl: './checkout-cart.component.html',
-  styleUrls: ['./checkout-cart.component.css'],
-  encapsulation: ViewEncapsulation.Native
+  styleUrls: ['./checkout-cart.component.css']
 })
 export class CheckoutCartComponent implements OnInit {
 

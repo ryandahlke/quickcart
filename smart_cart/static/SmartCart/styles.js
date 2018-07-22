@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\nhtml, body {\n  padding: 0;\n  margin: 0;\n  display: block;\n  height: 100vh;\n}\n"
 
 /***/ }),
 
