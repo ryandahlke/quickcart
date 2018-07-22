@@ -9,14 +9,15 @@ import {CartService} from "../cart.service";
 })
 export class ViewCartComponent implements OnInit {
 
-  cartId = 'abc1234';
+  cartId: string;
   // @Input() cartId: string;
   items: CartItem[] = [];
 
   constructor(readonly cartService: CartService) { }
 
   ngOnInit() {
-
+    this.cartId = this.cartService.getCurrentCartId();
+    this.cartService.getCart(this.cartId).subscribe((cart)=> this.items.push(...cart.cartItems));
   }
 
   registerBarcodeScan(upc:string){
