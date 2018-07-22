@@ -44,8 +44,7 @@ def delete_item():
 
 @app.route('/cart/<string:cart_id>')
 def view_cart(cart_id):
-    object_cart_id = ObjectId(cart_id)
-    cm = CartManager(object_cart_id)
+    cm = CartManager(cart_id)
     response = cm.get_cart()
     response_json = json.dumps(response)
     return Response(response_json, status=200)
@@ -53,8 +52,7 @@ def view_cart(cart_id):
 
 @app.route('/upcs-cart/<string:cart_id>')
 def get_cart(cart_id):
-    object_cart_id = ObjectId(cart_id)
-    cm = CartManager(object_cart_id)
+    cm = CartManager(cart_id)
     response = cm.get_cart_upcs()
     response_json = json.dumps(response)
     return Response(response_json, status=200)
