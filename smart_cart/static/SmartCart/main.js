@@ -157,13 +157,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_cart_view_cart_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./view-cart/view-cart.component */ "./src/app/view-cart/view-cart.component.ts");
 /* harmony import */ var _checkout_cart_checkout_cart_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./checkout-cart/checkout-cart.component */ "./src/app/checkout-cart/checkout-cart.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _debouncer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./debouncer */ "./src/app/debouncer.ts");
+/* harmony import */ var _cart_item_cart_item_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cart-item/cart-item.component */ "./src/app/cart-item/cart-item.component.ts");
+/* harmony import */ var _cart_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cart.service */ "./src/app/cart.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -188,7 +190,8 @@ var AppModule = /** @class */ (function () {
                 _cart_cart_component__WEBPACK_IMPORTED_MODULE_6__["CartComponent"],
                 _select_cart_select_cart_component__WEBPACK_IMPORTED_MODULE_7__["SelectCartComponent"],
                 _view_cart_view_cart_component__WEBPACK_IMPORTED_MODULE_8__["ViewCartComponent"],
-                _checkout_cart_checkout_cart_component__WEBPACK_IMPORTED_MODULE_9__["CheckoutCartComponent"]
+                _checkout_cart_checkout_cart_component__WEBPACK_IMPORTED_MODULE_9__["CheckoutCartComponent"],
+                _cart_item_cart_item_component__WEBPACK_IMPORTED_MODULE_11__["CartItemComponent"]
             ],
             imports: [
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModule"].forRoot(),
@@ -196,12 +199,153 @@ var AppModule = /** @class */ (function () {
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"],
             ],
             providers: [
-                _debouncer__WEBPACK_IMPORTED_MODULE_11__["Debouncer"]
+                _cart_service__WEBPACK_IMPORTED_MODULE_12__["CartService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/cart-item.ts":
+/*!******************************!*\
+  !*** ./src/app/cart-item.ts ***!
+  \******************************/
+/*! exports provided: CartItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartItem", function() { return CartItem; });
+var CartItem = /** @class */ (function () {
+    // constructor(upc: string){this.upc = upc;}
+    function CartItem(upc, imageUrl, description) {
+        if (imageUrl === void 0) { imageUrl = ''; }
+        if (description === void 0) { description = ''; }
+        this.upc = upc;
+        this.imageUrl = imageUrl;
+        this.description = description;
+    }
+    ;
+    return CartItem;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/cart-item/cart-item.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/cart-item/cart-item.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".cart-item{\n  display: table;\n}\n.cart-item img{\n  display:table-cell;\n  height: 2rem;\n}\n.cart-item span{\n  display: table-cell;\n}\n"
+
+/***/ }),
+
+/***/ "./src/app/cart-item/cart-item.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/cart-item/cart-item.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cart-item\">\n  <img src=\"{{cartItem.imageUrl}}\"><span>{{cartItem.description}}</span>\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/cart-item/cart-item.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/cart-item/cart-item.component.ts ***!
+  \**************************************************/
+/*! exports provided: CartItemComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartItemComponent", function() { return CartItemComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _cart_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cart-item */ "./src/app/cart-item.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CartItemComponent = /** @class */ (function () {
+    function CartItemComponent() {
+    }
+    CartItemComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _cart_item__WEBPACK_IMPORTED_MODULE_1__["CartItem"])
+    ], CartItemComponent.prototype, "cartItem", void 0);
+    CartItemComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cart-item',
+            template: __webpack_require__(/*! ./cart-item.component.html */ "./src/app/cart-item/cart-item.component.html"),
+            styles: [__webpack_require__(/*! ./cart-item.component.css */ "./src/app/cart-item/cart-item.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CartItemComponent);
+    return CartItemComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/cart.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/cart.service.ts ***!
+  \*********************************/
+/*! exports provided: CartService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartService", function() { return CartService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/index */ "./node_modules/rxjs/index.js");
+/* harmony import */ var rxjs_index__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rxjs_index__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _cart_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cart-item */ "./src/app/cart-item.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CartService = /** @class */ (function () {
+    function CartService() {
+    }
+    CartService.prototype.addItem = function (cartId, upc) {
+        return Object(rxjs_index__WEBPACK_IMPORTED_MODULE_1__["of"])(new _cart_item__WEBPACK_IMPORTED_MODULE_2__["CartItem"](upc, 'https://picsum.photos/200/300', 'My fancy product'));
+    };
+    CartService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], CartService);
+    return CartService;
 }());
 
 
@@ -335,56 +479,6 @@ var CheckoutCartComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/debouncer.ts":
-/*!******************************!*\
-  !*** ./src/app/debouncer.ts ***!
-  \******************************/
-/*! exports provided: Debouncer */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Debouncer", function() { return Debouncer; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var Debouncer = /** @class */ (function () {
-    function Debouncer() {
-    }
-    Debouncer.prototype.debounce = function (func, wait, callImmediately) {
-        if (callImmediately === void 0) { callImmediately = true; }
-        var timeout;
-        return function executedFunction() {
-            var context = this;
-            var args = arguments;
-            var later = function () {
-                timeout = null;
-                if (!callImmediately)
-                    func.apply(context, args);
-            };
-            var callNow = callImmediately && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) {
-                func.apply(context, args);
-            }
-        };
-    };
-    Debouncer = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
-    ], Debouncer);
-    return Debouncer;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/menu/menu.component.css":
 /*!*****************************************!*\
   !*** ./src/app/menu/menu.component.css ***!
@@ -392,7 +486,7 @@ var Debouncer = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".menu-bar-icon, .menu a:link, .menu a {\n  color: #484538;\n}\n\nbutton:focus {\n  outline: None;\n}\n\nli {\n  padding-top: 1em;\n}\n"
 
 /***/ }),
 
@@ -403,7 +497,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div></div><nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Link</a>\n      </li>\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Dropdown\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"#\">Action</a>\n          <a class=\"dropdown-item\" href=\"#\">Another action</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Something else here</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link disabled\" href=\"#\">Disabled</a>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<div class=\"row justify-content-center\">\n<nav class=\"menu navbar navbar-expand-lg\">\n  <button class=\"col-sm-12 navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span  class=\"navbar-toggler-icon\">\n      <i class=\"menu-bar-icon fa fa-bars fa-2x\" aria-hidden=\"true\"></i>\n    </span>\n  </button>\n\n  <div class=\"col-sm-12 collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto text-center\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" routerLink=\"/\">\n          <span class=\"sr-only\">(current)</span>\n          <span>\n            <i class=\"fa fa-home fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/view-cart\">\n          <span>\n            <i class=\"fa fa-shopping-cart fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/history\">\n          <span>\n            <i class=\"fa fa-history fa-3x\"></i>\n          </span>\n        </a>\n      </li>\n    </ul>\n  </div>\n</nav>\n</div>\n"
 
 /***/ }),
 
@@ -455,7 +549,7 @@ var MenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "canvas {\n    display: none;\n}\n"
 
 /***/ }),
 
@@ -466,7 +560,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"scanner\"></div>\n"
+module.exports = "<div id=\"scanner\">\n  <!--<video src=\"\"></video>-->\n  <!--<canvas class=\"drawingBuffer\"></canvas>-->\n</div>\n"
 
 /***/ }),
 
@@ -483,7 +577,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var quagga__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! quagga */ "./node_modules/quagga/dist/quagga.min.js");
 /* harmony import */ var quagga__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(quagga__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _debouncer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../debouncer */ "./src/app/debouncer.ts");
+/* harmony import */ var rxjs_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/index */ "./node_modules/rxjs/index.js");
+/* harmony import */ var rxjs_index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rxjs_index__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -496,22 +592,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ScannerComponent = /** @class */ (function () {
-    function ScannerComponent(debouncer) {
+    function ScannerComponent() {
+        var _this = this;
+        this.failureThreshhold = .105;
         this.scan = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.debouncer = new rxjs_index__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.audio = new Audio();
+        this.debouncer.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["debounceTime"])(1000)).subscribe(function (value) { _this.scan.emit(value); });
+    }
+    ScannerComponent.prototype.ngAfterViewInit = function () {
+        var scanner = document.querySelector('#scanner');
+        var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * .4;
         this.configObject = {
             inputStream: {
                 type: "LiveStream",
                 constraints: {
                     facingMode: "environment",
+                    width: scanner.clientWidth,
+                    height: height
                 },
-                target: '#scanner'
+                target: scanner
             },
             locator: {
-                patchSize: "medium",
+                patchSize: "large",
                 halfSample: false,
             },
-            frequency: 10,
+            frequency: 30,
             decoder: {
                 readers: [
                     'upc_reader'
@@ -526,10 +634,6 @@ var ScannerComponent = /** @class */ (function () {
             },
             locate: true
         };
-        this.debouncer = debouncer;
-        this.audio = new Audio();
-    }
-    ScannerComponent.prototype.ngAfterViewInit = function () {
         this.initializeQuagga();
         this.audio.src = "./assets/beep.mp3";
         this.audio.load();
@@ -541,17 +645,41 @@ var ScannerComponent = /** @class */ (function () {
                 console.log(err);
                 return;
             }
-            quagga__WEBPACK_IMPORTED_MODULE_1__["onDetected"](self.debouncer.debounce(function (result) {
-                if (result && result.codeResult) {
-                    self.beep();
-                    self.scan.emit(result);
+            quagga__WEBPACK_IMPORTED_MODULE_1__["onDetected"](function (result) {
+                if (!result.codeResult) {
+                    return;
                 }
-            }));
+                var code = result.codeResult.code;
+                if (self.lastResult !== code) {
+                    var countDecodedCodes_1 = 0;
+                    var err_1 = 0;
+                    result.codeResult.decodedCodes.forEach(function (decodedCode) {
+                        if (decodedCode.error != undefined) {
+                            countDecodedCodes_1++;
+                            err_1 += parseFloat(decodedCode.error);
+                        }
+                    });
+                    if (err_1 / countDecodedCodes_1 < self.failureThreshhold) {
+                        console.log("success!");
+                        console.log(err_1 / countDecodedCodes_1);
+                        self.beep();
+                        self.debouncer.next(result.codeResult.code);
+                    }
+                    else {
+                        console.log(err_1 / countDecodedCodes_1);
+                        console.log("Code: " + code.toString());
+                    }
+                }
+            });
             quagga__WEBPACK_IMPORTED_MODULE_1__["start"]();
+            document.querySelector('#scanner canvas').outerHTML = '';
         });
     };
     ScannerComponent.prototype.beep = function () {
         this.audio.play();
+    };
+    ScannerComponent.prototype.ngOnDestroy = function () {
+        quagga__WEBPACK_IMPORTED_MODULE_1__["stop"]();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -563,7 +691,7 @@ var ScannerComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./scanner.component.html */ "./src/app/scanner/scanner.component.html"),
             styles: [__webpack_require__(/*! ./scanner.component.css */ "./src/app/scanner/scanner.component.css")]
         }),
-        __metadata("design:paramtypes", [_debouncer__WEBPACK_IMPORTED_MODULE_2__["Debouncer"]])
+        __metadata("design:paramtypes", [])
     ], ScannerComponent);
     return ScannerComponent;
 }());
@@ -653,7 +781,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-scanner (scan)=\"registerBarcodeScan($event)\"></app-scanner>\n"
+module.exports = "<app-scanner (scan)=\"registerBarcodeScan($event)\"></app-scanner>\n<app-cart-item *ngFor=\"let item of items\" [cartItem]=\"item\"></app-cart-item>\n"
 
 /***/ }),
 
@@ -668,6 +796,7 @@ module.exports = "<app-scanner (scan)=\"registerBarcodeScan($event)\"></app-scan
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewCartComponent", function() { return ViewCartComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _cart_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cart.service */ "./src/app/cart.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -678,13 +807,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ViewCartComponent = /** @class */ (function () {
-    function ViewCartComponent() {
+    function ViewCartComponent(cartService) {
+        this.cartService = cartService;
+        this.cartId = 'abc1234';
+        // @Input() cartId: string;
+        this.items = [];
     }
     ViewCartComponent.prototype.ngOnInit = function () {
     };
-    ViewCartComponent.prototype.registerBarcodeScan = function ($event) {
-        console.log($event);
+    ViewCartComponent.prototype.registerBarcodeScan = function (upc) {
+        var _this = this;
+        this.cartService.addItem(this.cartId, upc).subscribe(function (item) { return _this.items.push(item); });
     };
     ViewCartComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -692,7 +827,7 @@ var ViewCartComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./view-cart.component.html */ "./src/app/view-cart/view-cart.component.html"),
             styles: [__webpack_require__(/*! ./view-cart.component.css */ "./src/app/view-cart/view-cart.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_cart_service__WEBPACK_IMPORTED_MODULE_1__["CartService"]])
     ], ViewCartComponent);
     return ViewCartComponent;
 }());
@@ -761,7 +896,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/zach/Projects/smartcart/smart_cart/javascript/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/jon/Documents/Projects/hackmw/smart_cart/javascript/src/main.ts */"./src/main.ts");
 
 
 /***/ })
