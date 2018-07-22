@@ -1,6 +1,23 @@
-.select-cart-box {
-  display: block;
-  height: 10vh;
-  width: 10vw;
-  background: black;
+.banner {
+  height: 10%;
+
+}
+
+.banner-text {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3.5em;
+}
+
+.new-cart-action-box {
+  height: 90%;
+}
+
+.new-cart-btn {
+  height: 10%;
+  width: 50%;
+}
+
+.new-cart-btn-text {
+  font-size: 2em;
+  font-family: sans-serif;
 }
