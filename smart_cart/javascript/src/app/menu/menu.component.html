@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
 <nav class="menu navbar navbar-expand-lg">
-  <button class="col-sm-12 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="col-sm-12 navbar-toggler" id="menuDropDown" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span  class="navbar-toggler-icon">
       <i class="menu-bar-icon fa fa-bars fa-2x" aria-hidden="true"></i>
     </span>
@@ -9,7 +9,7 @@
   <div class="col-sm-12 collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-center">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/">
+        <a (click)="closeNav()" class="nav-link" routerLink="/">
           <span class="sr-only">(current)</span>
           <span>
             <i class="fa fa-home fa-3x"></i>
@@ -17,14 +17,14 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/view-cart">
+        <a (click)="closeNav()" class="nav-link" routerLink="/view-cart">
           <span>
             <i class="fa fa-shopping-cart fa-3x"></i>
           </span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/history">
+        <a (click)="closeNav()" class="nav-link" routerLink="/history">
           <span>
             <i class="fa fa-history fa-3x"></i>
           </span>

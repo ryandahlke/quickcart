@@ -6,18 +6,20 @@
   align-self: auto;
   height: 100vh;
   display: block;
-  background: #28917A;
+  background: rgba(40,145,122, 0.4);
 }
 
 .main-container {
   height: 100vh;
   width: 100vw;
+  z-index: 1;
 }
 
 .menu-container {
   height: 100vh;
+  z-index: 2000;
 }
 
 .routes-container {
-
+  z-index: 1000;
 }

@@ -5,7 +5,7 @@
 
 .banner-text {
   font-family: 'Roboto Slab', serif;
-  font-size: 3.5em;
+  font-size: 8vw;
 }
 
 .new-cart-action-box {
@@ -13,11 +13,12 @@
 }
 
 .new-cart-btn {
-  height: 10%;
-  width: 50%;
+    height: 15vw;
+    width: 50vw;
 }
 
 .new-cart-btn-text {
-  font-size: 2em;
+  font-size: 5vw;
   font-family: sans-serif;
+  color: #484538;
 }

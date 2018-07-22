@@ -12,4 +12,12 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeNav() {
+    document.getElementById("menuDropDown").classList.add("collapsed")
+    document.getElementById("navbarSupportedContent").classList.remove("show")
+  }
+
 }
+
+
+

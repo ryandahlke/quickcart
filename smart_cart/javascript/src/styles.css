@@ -5,3 +5,11 @@ html, body {
   display: block;
   height: 100vh;
 }
+
+body {
+  background: url("/assets/textured-background.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

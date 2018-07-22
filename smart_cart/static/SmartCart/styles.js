@@ -48,7 +48,7 @@ module.exports = "/*!\n * Bootstrap v4.1.2 (https://getbootstrap.com/)\n * Copyr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\nhtml, body {\n  padding: 0;\n  margin: 0;\n  display: block;\n  height: 100vh;\n}\n"
+module.exports = "\nhtml, body {\n  padding: 0;\n  margin: 0;\n  display: block;\n  height: 100vh;\n}\n\nbody {\n  background: url(\"/../../static/SmartCart/assets/img/background-img/textured-background.jpg\");\n  background-size: cover;\n}\n"
 
 /***/ }),
 
