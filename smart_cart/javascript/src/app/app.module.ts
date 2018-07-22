@@ -4,7 +4,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ScannerComponent } from './scanner/scanner.component';
-import { WindowComponent } from './window/window.component';
 import { MenuComponent } from './menu/menu.component';
 import { CartComponent } from './cart/cart.component';
 import { SelectCartComponent } from './select-cart/select-cart.component';
@@ -16,7 +15,6 @@ import { Debouncer } from './debouncer'
 @NgModule({
   declarations: [
     AppComponent,
-    WindowComponent,
     MenuComponent,
     ScannerComponent,
     CartComponent,
