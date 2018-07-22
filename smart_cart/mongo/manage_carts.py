@@ -32,6 +32,7 @@ class CartManager(object):
         new_cart = carts.insert_one(empty_cart)
         cart_object_id = new_cart.inserted_id
         self.close_connection(client)
+        self.cart_id = cart_object_id
         self.cart_id_str = str(cart_object_id)
         return self.cart_id_str
 
@@ -98,11 +99,8 @@ class CartManager(object):
             for item in cart['items']:
                 if item['upc'] == upc:
                     return True, counter
-                else:
-                    return False, counter
-            counter+=1
-        else:
-            return False, counter
+                counter+=1
+        return False, 0
 
     def get_cart_upcs(self):
         upcs = []
