@@ -3,8 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
-  encapsulation: ViewEncapsulation.Native
+  styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
 

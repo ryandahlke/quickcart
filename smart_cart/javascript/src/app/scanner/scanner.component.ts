@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, AfterViewInit} from '@angular/core';
 import * as Quagga from 'quagga';
 import {Debouncer} from '../debouncer'
 
@@ -7,7 +7,7 @@ import {Debouncer} from '../debouncer'
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.css']
 })
-export class ScannerComponent implements OnInit {
+export class ScannerComponent implements AfterViewInit {
   readonly configObject;
   private onDetected;
   private audio;
@@ -44,7 +44,7 @@ export class ScannerComponent implements OnInit {
     this.onDetected = debouncer.debounce(this.processResult, 1000);
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.initializeQuagga();
   }
 
