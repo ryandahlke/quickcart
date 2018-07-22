@@ -10,7 +10,7 @@ import { SelectCartComponent } from './select-cart/select-cart.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
 import { CheckoutCartComponent } from './checkout-cart/checkout-cart.component';
 import { AppRoutingModule } from './app-routing.module';
-import { Debouncer } from './debouncer';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { Debouncer } from './debouncer';
     CartComponent,
     SelectCartComponent,
     ViewCartComponent,
-    CheckoutCartComponent
+    CheckoutCartComponent,
+    CartItemComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -28,7 +29,6 @@ import { Debouncer } from './debouncer';
     AppRoutingModule,
   ],
   providers: [
-    Debouncer
   ],
   bootstrap: [AppComponent]
 })
