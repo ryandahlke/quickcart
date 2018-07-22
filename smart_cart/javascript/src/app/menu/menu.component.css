@@ -1,0 +1,11 @@
+.menu-bar-icon, .menu a:link, .menu a {
+  color: #484538;
+}
+
+button:focus {
+  outline: None;
+}
+
+li {
+  padding-top: 1em;
+}
