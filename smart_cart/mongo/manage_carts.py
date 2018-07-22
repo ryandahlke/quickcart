@@ -86,6 +86,19 @@ class CartManager(object):
         self.close_connection(client)
         return this_cart
 
+    def get_cart_upcs(self):
+        client = self.open_connection()
+        carts = self.get_carts_collection(client)
+        this_cart = carts.find_one(self.cart_id)
+        upc_list = []
+        for item in this_cart['items']:
+            counter = 0
+            quantity = item['quantity']
+            while counter < quantity:
+                upc_list.append(item['upc'])
+                counter += 1
+        return upc_list
+
     # This method does not appear to be used anywhere. I'm leaving it here commented out just in case.
     # def get_cart_ids(self):
     #     client = self.open_connection()

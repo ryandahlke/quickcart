@@ -33,19 +33,29 @@ def add_item():
 
 @app.route('/delete-item/', methods=['DELETE'])
 def delete_item():
-    cm.cart_id = object_cart_id
+    upc = request.json['upc']
+    cart_id = request.json['cart_id']
+    cm = CartManager(cart_id)
     cm.remove_item_from_cart(upc)
+    return Response(status=204)
 
 
 @app.route('/view-cart/', methods=['GET'])
 def view_cart():
-    cm.cart_id = object_cart_id
-    return cm.get_cart()
+    cart_id = request.json['cart_id']
+    cm = CartManager(cart_id)
+    response = cm.get_cart()
+    response_json = json.dumps(response)
+    return Response(response_json, status=200)
 
 
 @app.route('/get-cart/', methods=['GET'])
 def get_cart():
-    return 'The Get Cart Barcode Page'
+    cart_id = request.json['cart_id']
+    cm = CartManager(cart_id)
+    response = cm.get_cart_upcs()
+    response_json = json.dumps(response)
+    return Response(response_json, status=200)
 
 
 @app.route('/main.js', methods=['GET'])
